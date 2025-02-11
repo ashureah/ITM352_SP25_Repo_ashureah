@@ -1,8 +1,8 @@
-import HandyMath
+from HandyMath import min_value, max_value, exponent, apply_function
 
-n1 = input("Enter number1:")
-n2 = input("Enter number2:")
+x = 4
+y = 2
 
-print(f"The midpoint of {n1} and {n2} is {HandyMath.midpoint(n1,n2)}")
-#print(HandyMath.squareroot(4))
-#print(HandyMath.exponent(2,3))
+print(apply_function(x, y, min_value))
+print(apply_function(x, y, max_value))
+print(apply_function(x, y, exponent))
