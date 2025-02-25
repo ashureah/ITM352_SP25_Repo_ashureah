@@ -1,9 +1,11 @@
-trip_data = [
-    Trip_id": "da7a62fce",
-    "Trip_seconds": 360,
-    "Trip_miles": 1.1,
-    "Fare": "$6.25"
-]
+trip_durations = [1.1, 0.8, 2.5, 2.6]
+trip_fares = (6.25, 5.25, 10.50, 8.05)
 
-print (trip_data)
-print (f"Trip miles are {trip_data['Trip_miles']}")
+trips = {
+    "miles" : trip_durations,
+    "fares": trip_fares
+}
+trips["miles"]
+trip_num = (int(input("What trip do you want?:")))
+print(f"Duration: {trips["miles"][trip_num - 1]} hours")
+print(f"Cost: ${trips["fares"][trip_num - 1]}")
