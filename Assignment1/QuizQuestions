@@ -1,0 +1,38 @@
+{
+     "How many planets are in our slar system?": [
+          "12",
+          "8",
+          "11",
+          "15"
+     ],
+     "Which of these planets have rings?": [
+          "Austin",
+          "San Antonio",
+          "Dallas",
+          "Waco"
+     ],
+     "Which planent in our solar system has the fastest winds?": [
+          "Neptune",
+          "Jupiter",
+          "Saturn",
+          "Mars"
+     ],
+     "Whcih of the following planets has the hottest surface temperature in the solar system?": [
+          "Mercury",
+          "Venus",
+          "Mars",
+          "Jupiter"
+     ],
+     "Which of these planets have the stronget magnetic field?": [
+          "Earth",
+          "Saturn",
+          "Jupiter",
+          "Uranus"
+     ],
+      "Which of these planets rotate in the opposite direction of most planets?": [
+        "Venus", 
+        "Uranus", 
+        "Earth", 
+        "Neptune"
+      ]
+}
