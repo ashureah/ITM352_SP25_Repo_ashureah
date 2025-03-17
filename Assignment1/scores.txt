@@ -1,0 +1,2 @@
+Score: 6, Time: 98.01 seconds
+Score: 7, Time: 103.82 seconds
