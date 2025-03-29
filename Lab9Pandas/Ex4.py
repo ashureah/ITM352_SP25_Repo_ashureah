@@ -1,11 +1,11 @@
 import pandas as pd
 
-url = "https://drive.google.com/file/d/1-MpDUIRZxhFnN-rcDdJQMe_mcCSciaus/view?usp=sharing"
+file_path = "Taxi_Trips.json"
+df = pd.read_json(file_path)
 
+# Print summary statistics
+print(df.describe())
 
-df = pd.read_json(url)
+print(df)
 
-print("Summary Statistics:\n", df.describe(include=["fare"]))
-
-
-print("\nMedian Values:\n", df.median())
+print("\nMedian fare:", df ["fare"].median())
