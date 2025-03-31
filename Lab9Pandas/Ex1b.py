@@ -1,9 +1,8 @@
 import numpy as np
 
-percentile_income = np.array (
+percentile_income = np.array(
     [
-
-     (10, 14629),
+    (10, 14629),
     (20, 25600),
     (30, 37002),
     (40, 50000),
@@ -14,5 +13,6 @@ percentile_income = np.array (
     (90, 184292)
 ]
 )
-print (f"Percentiele\tIncome")
-print (f"{percentile_income[0,0]}\t{}")
+print(f'Percentile\tIncome')
+for percentile, income in percentile_income:
+    print(f'{percentile}\t{income}')
