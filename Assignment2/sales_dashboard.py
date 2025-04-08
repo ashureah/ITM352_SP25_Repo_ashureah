@@ -131,6 +131,7 @@ def unique_employees_by_region():
 
 def create_custom_pivot():
     # Custom Pivot Table Generator: users can define rows, columns, values, and aggregation logic interactively.
+    #Used AI here to figure out how to create the custom pivot tables. Tweaked where needed. 
     df['total_price'] = df['quantity'] * df['unit_price']
     row_options = {"1": "employee_name", "2": "sales_region", "3": "product_category"}
     col_options = {"1": "order_type", "2": "customer_type"}
