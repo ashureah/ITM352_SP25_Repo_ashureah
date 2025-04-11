@@ -1,23 +1,17 @@
-import ssl
-import urllib.request
+import requests
 from bs4 import BeautifulSoup
 
-# Disable SSL verification (only for testing)
-ssl._create_default_https_context = ssl._create_unverified_context
-
-# URL of the page
+# Define the URL
 url = "https://shidler.hawaii.edu/itm/people"
 
-# Open and read the page content
-response = urllib.request.urlopen(url)
-html = response.read()
+# Fetch the webpage content
+response = requests.get(url)
 
-# Parse the HTML with BeautifulSoup
-soup = BeautifulSoup(html, "lxml")  # You can also use "html.parser" if lxml isn't installed
+# Parse the HTML using BeautifulSoup
+soup = BeautifulSoup(response.text, "html.parser")
 
-# Print the type of the soup object
-print("Type of soup object:", type(soup))
+# Print the type of the object
+print("Type of object:", type(soup))
 
-# Prettify (print a nicely indented version of the HTML)
-print("\nFirst few lines of prettified HTML:\n")
-print(soup.prettify()[:500])  # Just printing the first 500 characters
+# Print the first few lines of prettified HTML
+print(soup.prettify()[:500])  # Print only the first 500 characters for brevity

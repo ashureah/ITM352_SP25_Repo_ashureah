@@ -1,19 +1,23 @@
-import ssl
 import pandas as pd
+import ssl
 
-# Disable SSL certificate verification (not for production)
+# Bypass SSL verification (not recommended for production)
 ssl._create_default_https_context = ssl._create_unverified_context
 
-# URL with interest rate data
+# Define the URL
 url = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202410"
 
-# Read HTML tables from the URL (requires 'lxml' parser)
+# Extract tables from the webpage
 tables = pd.read_html(url)
 
-# Let's say you want to print all tables found first
-print(f"Found {len(tables)} tables")
+# Print the number of tables found
+print(f"Number of tables found: {len(tables)}")
 
-# View the columns of the first table
-df = tables[0]
-print("Columns in the table:")
-print(df.columns)
+# Print the first few columns of the first table
+if tables:
+    df = tables[0]  # Assuming the first table contains the interest rate data
+    print("Columns in the DataFrame:")
+    print(df.columns)
+    print(df.head())  # Display the first few rows
+else:
+    print("No tables found on the page.")
