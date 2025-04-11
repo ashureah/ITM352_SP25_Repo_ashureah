@@ -11,8 +11,11 @@ results = client.get("rr23-ymwb", limit=500)
 # Step 4: Convert to DataFrame
 df = pd.DataFrame.from_records(results)
 
-# Step 5: Print vehicle make and fuel source
-for index, row in df.iterrows():
-    make = row.get("vehicle_make", "Unknown")
-    fuel = row.get("vehicle_fuel_source", "Unknown")
-    print(f"{make}: {fuel}")
+# Group by fuel type and count the number of vehicles per fuel source
+fuel_counts = df.groupby("vehicle_fuel_source")["vehicle_make"].count().reset_index()
+
+# Rename columns for clarity
+fuel_counts.columns = ["Fuel Source", "Number of Vehicles"]
+
+# Print the result
+print(fuel_counts)

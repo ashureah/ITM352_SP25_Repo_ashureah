@@ -10,7 +10,3 @@ url = "https://data.cityofchicago.org/Historic-Preservation/Landmark-Districts/z
 # Open the URL
 with urllib.request.urlopen(url) as response:
     print(response)
-    # Read the response
-   # html = response.read()
-    # Print the raw HTML response
-  #  print(html.decode('utf-8'))
