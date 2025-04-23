@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>{{ question }}</h1>
+
+    <!-- Display progress bar -->
+    <div class="progress-container">
+        <div class="progress-bar" style="width: {{ progress }}%;">{{ progress }}%</div>
+    </div>
+
+    <!-- Quiz form to submit answers -->
+    <form method="POST">
+        {% for option in options %}
+            <label>
+                <input type="checkbox" name="answer" value="{{ option }}"> {{ option }}
+            </label><br>
+        {% endfor %}
+        <button type="submit">Submit Answer</button>
+    </form>

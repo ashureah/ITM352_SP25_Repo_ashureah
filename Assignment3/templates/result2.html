@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Result</title>
+</head>
+<body>
+    <h1>Quiz Complete!</h1>
+    <p>Great job, {{ username }}!</p>
+    <p>Your score: {{ score }} out of {{ total }}</p>
+
+    <h2>Review Missed Questions:</h2>
+    {% for item in missed %}
+        <div>
+            <strong>Question:</strong> {{ item.question }}<br>
+            <strong>Your Answer:</strong> {{ item.your_answer | join(', ') }}<br>
+            <strong>Correct Answer:</strong> {{ item.correct | join(', ') }}<br>
+            <strong>Explanation:</strong> {{ item.explanation }}
+        </div>
+        <hr>
+    {% endfor %}
+    <a href="{{ url_for('restart') }}">Retake Quiz</a>
+</body>
+</html>
