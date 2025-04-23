@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 app.secret_key = 'secret_key_here'
 
-# Load questions from JSON file
+
 
 def load_questions(filename='quiz_questions.json'):
     with open(filename, 'r') as file:
@@ -13,7 +13,7 @@ def load_questions(filename='quiz_questions.json'):
 
 questions = load_questions()
 
-# Route: Home
+
 @app.route('/')
 def home():
     username = request.cookies.get('username')
@@ -24,7 +24,6 @@ def home():
     else:
         return render_template('enter_name.html')
 
-# Route: Save user name
 @app.route('/save_name', methods=['POST'])
 def save_name():
     username = request.form.get('username')
@@ -33,7 +32,7 @@ def save_name():
     session['score_history'] = []
     return resp
 
-# Route: Quiz
+
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
     import random
@@ -43,7 +42,7 @@ def quiz():
         session['question_index'] = 0
         session['missed_questions'] = []
 
-        # ✅ Shuffle questions once at the start
+        
         shuffled = load_questions()
         random.shuffle(shuffled)
         session['questions'] = shuffled
@@ -84,7 +83,7 @@ def quiz():
     progress = int((index) / len(questions) * 100)
     return render_template('quiz.html', question=q['question'], options=options, progress=progress)
 
-# Route: Result
+
 @app.route('/result')
 def result():
     score = session.get('score', 0)

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <meta charset="UTF-8">
-  <title>Welcome to the Space Quiz</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
 </head>
 <body>
-  <h1>Welcome to the Space Quiz!</h1>
-  <a href="{{ url_for('quiz') }}">Start Quiz</a>
+    <h1>Welcome Back, {{ username }}!</h1>
+
+    <h2>Your Score History:</h2>
+    <ul>
+        {% for score in score_history %}
+            <li>Score: {{ score }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('quiz') }}">Start Quiz</a>
 </body>
 </html>

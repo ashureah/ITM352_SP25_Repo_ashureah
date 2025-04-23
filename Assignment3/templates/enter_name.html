@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Enter Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Your Name</title>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <form action="{{ url_for('save_name') }}" method="POST">
-        <label>Enter your name:</label>
-        <input type="text" name="username" required>
-        <button type="submit">Start</button>
+    <h1>Welcome! Please enter your name:</h1>
+
+    <form method="POST" action="{{ url_for('save_name') }}">
+        <input type="text" name="username" placeholder="Enter your name" required>
+        <button type="submit">Start Quiz</button>
     </form>
 </body>
 </html>
