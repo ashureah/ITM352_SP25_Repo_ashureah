@@ -1,0 +1,30 @@
+<!-- templates/view.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Inventory</title></head>
+<body>
+  <h1>Inventory</h1>
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Purchase Date</th>
+      <th>Expiration Date</th>
+      <th>Delete</th>
+    </tr>
+    {% for item in inventory %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.brand }}</td>
+      <td>{{ item.category }}</td>
+      <td>{{ item.purchase_date }}</td>
+      <td>{{ item.expiration_date }}</td>
+      <td><a href="{{ url_for('delete', name=item.name) }}">❌ Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <a href="/">← Back to Home</a>
+</body>
+</html>

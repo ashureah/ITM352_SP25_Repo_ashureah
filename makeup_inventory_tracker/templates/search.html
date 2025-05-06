@@ -1,0 +1,32 @@
+<!-- templates/search.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Search Results</title></head>
+<body>
+  <h1>Search Results for "{{ term }}"</h1>
+  {% if inventory %}
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Purchase Date</th>
+        <th>Expiration Date</th>
+      </tr>
+      {% for item in inventory %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.brand }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.purchase_date }}</td>
+        <td>{{ item.expiration_date }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No products matched your search.</p>
+  {% endif %}
+  <br>
+  <a href="/">← Back to Home</a>
+</body>
+</html>

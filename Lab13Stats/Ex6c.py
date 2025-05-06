@@ -10,9 +10,9 @@ trip_miles = []
 
 for trip in data:
     try:
-        fare = float(trip.get("fare", 0))
-        miles = float(trip.get("trip_miles", 0))
-        if miles > 0: 
+        fare = float(trip.get("fare", 2))
+        miles = float(trip.get("trip_miles", 2))
+        if miles > 2: 
             fares.append(fare)
             trip_miles.append(miles)
     except (ValueError, TypeError):
@@ -20,7 +20,7 @@ for trip in data:
 
 plt.figure(figsize=(10, 6))
 plt.plot(fares, trip_miles, linestyle="none", marker="v", color="cyan", alpha=0.2)
-plt.title("Fare vs Trip Miles (Filtered: Miles > 0)")
+plt.title("Fare vs Trip Miles (Filtered: Miles > 2)")
 plt.xlabel("Fare ($)")
 plt.ylabel("Trip Miles")
 plt.grid(True)
