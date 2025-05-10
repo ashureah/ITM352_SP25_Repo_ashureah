@@ -9,8 +9,12 @@ INVENTORY_FILE = 'inventory.json'
 def load_inventory():
     if os.path.exists(INVENTORY_FILE):
         with open(INVENTORY_FILE, 'r') as file:
-            return json.load(file)
+            try:
+                return json.load(file)
+            except json.JSONDecodeError:
+                return []
     return []
+
 
 def save_inventory(inventory):
     with open(INVENTORY_FILE, 'w') as file:
@@ -18,9 +22,23 @@ def save_inventory(inventory):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    today = datetime.today().date()
+    inventory = load_inventory()
+    expiring = []
+    expired = []
 
-@app.sroute('/add', methods=['GET', 'POST'])
+    for item in inventory:
+        exp_date = datetime.strptime(item['expiration_date'], "%Y-%m-%d").date()
+        days_left = (exp_date - today).days
+        if days_left < 0:
+            expired.append(item)
+        elif days_left <= 30:
+            expiring.append(item)
+
+    return render_template('index.html', expired=expired, expiring=expiring)
+
+
+@app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
         product = {
@@ -39,32 +57,60 @@ def add():
 @app.route('/view')
 def view():
     inventory = load_inventory()
+    today = datetime.today().date()
+
+    for item in inventory:
+        exp_date = datetime.strptime(item['expiration_date'], "%Y-%m-%d").date()
+        days_left = (exp_date - today).days
+        if days_left < 0:
+            item['status'] = 'expired'
+        elif days_left <= 30:
+            item['status'] = 'expiring'
+        else:
+            item['status'] = 'safe'
+
     sort_by = request.args.get('sort_by', 'category')
     inventory.sort(key=lambda x: x.get(sort_by, ''))
+
     return render_template('view.html', inventory=inventory)
 
 @app.route('/alerts')
 def alerts():
     today = datetime.today().date()
     inventory = load_inventory()
-    expiring = []
     expired = []
 
     for item in inventory:
         exp_date = datetime.strptime(item['expiration_date'], "%Y-%m-%d").date()
         days_left = (exp_date - today).days
         if days_left < 0:
+            item['status'] = 'expired'
             expired.append(item)
-        elif days_left <= 30:
-            expiring.append(item)
 
-    return render_template('view.html', inventory=expired + expiring)
+    return render_template('alerts.html', inventory=expired)
 
 @app.route('/search', methods=['GET'])
 def search():
     term = request.args.get('q', '').lower()
     inventory = load_inventory()
-    results = [item for item in inventory if term in item['name'].lower() or term in item['category'].lower()]
+
+    # Precompute status just like in /view
+    today = datetime.today().date()
+    for item in inventory:
+        exp_date = datetime.strptime(item['expiration_date'], "%Y-%m-%d").date()
+        days_left = (exp_date - today).days
+        if days_left < 0:
+            item['status'] = 'expired'
+        elif days_left <= 30:
+            item['status'] = 'expiring'
+        else:
+            item['status'] = 'safe'
+
+    results = [
+        item for item in inventory
+        if term in item['name'].lower() or term in item['brand'].lower() or term in item['category'].lower()
+    ]
+
     return render_template('search.html', inventory=results, term=term)
 
 @app.route('/delete/<name>')

@@ -1,14 +1,42 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html>
-<head><title>Makeup Inventory</title></head>
-<body>
-  <h1>💄 Makeup Inventory Tracker</h1>
-  <ul>
-    <li><a href="/add">➕ Add New Product</a></li>
-    <li><a href="/view">📋 View Inventory</a></li>
-    <li><a href="/alerts">⏰ Expiration Alerts</a></li>
-    <li><a href="/search?q=">🔍 Search Inventory</a></li>
-  </ul>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Makeup Inventory Tracker</title>
+    <p style="font-size: 18px; color: #d63384;">
+      🌸 Welcome to your personalized makeup tracker! Keep your collection organized and know when it's time to say goodbye to old favorites  🌸
+    </p>    
+    <img src="{{ url_for('static', filename='makeup_banner.png') }}" alt="Makeup Banner" style="max-width: 300px; display: block; margin: 20px auto;">
+  
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>  
+  <body>
+    <div class="container">
+      <body>
+        <h1 class="page-title">Makeup Inventory Tracker</h1>      
+      <div class="search-container">
+        <form action="{{ url_for('search') }}" method="get">
+          <input class="search-box" type="text" name="q" placeholder="Search products..." required>
+          <button class="search-btn" type="submit">🔍 Search</button>
+        </form>
+      </div>      
+
+      <hr style="border: 0; height: 2px; background: #ffc0cb; margin: 40px 0 20px 0;">
+
+      <h3 style="color: #ff69b4; text-align: center; font-weight: 600;">
+        ✨ Actions
+      </h3>
+      
+      <div class="nav-buttons">
+        <a class="btn-nav" href="/add">➕ Add New Product</a>
+        <a class="btn-nav" href="/view">📋 View Inventory</a>
+        <a class="btn-nav" href="/alerts">⏰ Expired Inventory</a>
+      </div>      
+    </div>
+    <hr style="border: 0; height: 2px; background: #ffd1dc; margin: 40px 0;">
+    <blockquote style="text-align: center; color: #c71585; margin-top: 60px; font-style: italic; font-size: 16px;">
+      “Beneath the makeup and behind the smile I am just a girl who wishes for the world.”<br>— Marilyn Monroe
+    </blockquote>    
+  </body>  
 </html>

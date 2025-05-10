@@ -1,30 +1,60 @@
-<!-- templates/view.html -->
 <!DOCTYPE html>
 <html>
-<head><title>Inventory</title></head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Inventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
 <body>
-  <h1>Inventory</h1>
-  <table border="1">
-    <tr>
-      <th>Name</th>
-      <th>Brand</th>
-      <th>Category</th>
-      <th>Purchase Date</th>
-      <th>Expiration Date</th>
-      <th>Delete</th>
-    </tr>
-    {% for item in inventory %}
-    <tr>
-      <td>{{ item.name }}</td>
-      <td>{{ item.brand }}</td>
-      <td>{{ item.category }}</td>
-      <td>{{ item.purchase_date }}</td>
-      <td>{{ item.expiration_date }}</td>
-      <td><a href="{{ url_for('delete', name=item.name) }}">❌ Delete</a></td>
-    </tr>
-    {% endfor %}
-  </table>
-  <br>
-  <a href="/">← Back to Home</a>
+    <h2>Expired Products</h2>
+    <p>
+      <a href="{{ url_for('home') }}" style="text-decoration: none; background-color: #f2f2f2; padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc;">
+        🏠 Back to Home
+      </a>
+    </p>
+    
+    {% if inventory %}
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Purchase Date</th>
+                <th>Expiration Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for item in inventory %}
+            <tr
+    {% if item.status == 'expired' %}
+      style="background-color: #f8d7da;"
+    {% elif item.status == 'expiring' %}
+      style="background-color: #fff3cd;"
+    {% endif %}
+  >
+    <td>{{ item.name }}</td>
+    <td>{{ item.brand }}</td>
+    <td>{{ item.category }}</td>
+    <td>{{ item.purchase_date }}</td>
+    <td>{{ item.expiration_date }}</td>
+    <td>
+      {% if item.status == 'expired' %}
+        ❌ Expired
+      {% elif item.status == 'expiring' %}
+        ⚠️ Expiring Soon
+      {% else %}
+        ✅ Good
+      {% endif %}
+    </td>
+    <td><a href="{{ url_for('delete', name=item.name) }}">Delete</a></td>
+  </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No products in inventory.</p>
+    {% endif %}
+
+    
 </body>
 </html>

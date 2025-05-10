@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Bronzer Palette",
+        "brand": "Juvias Palace",
+        "category": "Bronzer",
+        "purchase_date": "2025-03-20",
+        "expiration_date": "2027-03-20"
+    },
+    {
+        "name": "Eye Shadow Palette",
+        "brand": "ELF",
+        "category": "Eye Shadow",
+        "purchase_date": "2019-12-25",
+        "expiration_date": "2020-12-25"
+    }
+]

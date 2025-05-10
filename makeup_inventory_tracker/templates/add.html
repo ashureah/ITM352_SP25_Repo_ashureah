@@ -1,18 +1,30 @@
-<!-- templates/add.html -->
 <!DOCTYPE html>
 <html>
-<head><title>Add Product</title></head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Add New Product</title>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      </head>
 <body>
-  <h1>Add New Product</h1>
-  <form method="POST">
-    <label>Product Name: <input type="text" name="name" required></label><br>
-    <label>Brand: <input type="text" name="brand" required></label><br>
-    <label>Category: <input type="text" name="category" required></label><br>
-    <label>Purchase Date: <input type="date" name="purchase_date" required></label><br>
-    <label>Expiration Date: <input type="date" name="expiration_date" required></label><br>
-    <button type="submit">Add Product</button>
-  </form>
-  <br>
-  <a href="/">← Back to Home</a>
+    <h2>Add New Product</h2>
+    <form method="POST" action="{{ url_for('add') }}">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Brand:</label><br>
+        <input type="text" name="brand" required><br><br>
+
+        <label>Category:</label><br>
+        <input type="text" name="category" required><br><br>
+
+        <label>Purchase Date:</label><br>
+        <input type="date" name="purchase_date" required><br><br>
+
+        <label>Expiration Date:</label><br>
+        <input type="date" name="expiration_date" required><br><br>
+
+        <button type="submit">Add Product</button>
+    </form>
 </body>
 </html>
