@@ -20,6 +20,7 @@ def save_inventory(inventory):
     with open(INVENTORY_FILE, 'w') as file:
         json.dump(inventory, file, indent=4)
 
+# Homepage: search, quick links, and expiration preview
 @app.route('/')
 def home():
     today = datetime.today().date()
@@ -37,7 +38,7 @@ def home():
 
     return render_template('index.html', expired=expired, expiring=expiring)
 
-
+# Add a new product to the inventory
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
@@ -74,6 +75,7 @@ def view():
 
     return render_template('view.html', inventory=inventory)
 
+# Show only expired products
 @app.route('/alerts')
 def alerts():
     today = datetime.today().date()
@@ -89,6 +91,7 @@ def alerts():
 
     return render_template('alerts.html', inventory=expired)
 
+# Search inventory by name, brand, or category
 @app.route('/search', methods=['GET'])
 def search():
     term = request.args.get('q', '').lower()

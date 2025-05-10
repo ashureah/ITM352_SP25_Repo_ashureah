@@ -12,5 +12,19 @@
         "category": "Eye Shadow",
         "purchase_date": "2019-12-25",
         "expiration_date": "2020-12-25"
+    },
+    {
+        "name": "Easy Bake Powder",
+        "brand": "Huda Beauty",
+        "category": "Loose Powder",
+        "purchase_date": "2025-10-05",
+        "expiration_date": "2027-05-01"
+    },
+    {
+        "name": "Microsmooth Powder",
+        "brand": "Sephora",
+        "category": "Setting Powder",
+        "purchase_date": "2025-10-05",
+        "expiration_date": "2027-05-01"
     }
 ]
